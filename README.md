@@ -1,1 +1,2 @@
-# Spring_junit4_setup_manual
+# Springでjunit4の環境構築
+
