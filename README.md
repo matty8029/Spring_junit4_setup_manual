@@ -62,7 +62,7 @@ UserController.java
 ```java
 @Controller
 public class UserController {
-       ~~~省略~~~   
+ /*      ~~~省略~~~   */
        @RequestMapping(value = "/userSearch", method = RequestMethod.GET)
        public String userSearchGet(ModelMap model) {
               model.addAttribute("userSearhForm", new UserSearchForm());
@@ -73,10 +73,10 @@ public class UserController {
               //バリデーションエラーなら検索ページへリダイレクト
               if(result.hasError())
                      return "userSearch";
-              ~~~入力値にあった検索を行う処理~~~
+/*              ~~~入力値にあった検索を行う処理~~~  */
               //検索結果のページへ
               return "userSearchResult";
        }
-       ~~~省略~~~
+/*       ~~~省略~~~     */
 }
 ```
