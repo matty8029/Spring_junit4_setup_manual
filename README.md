@@ -9,16 +9,17 @@ junit4環境設定からテストコード作成までの手順をまとめる�
 ・入力フォームのバリデーション<br />
 ・指定のviewに返却されるか<br /><br />
 プロジェクトの構造は大雑把に下記のような配置<br /><br />
-project┬src┬main┬controller─UserController.java<br />
+```
+project┬src┬main┬controller─UserController.java
        │   │    ├service<br />
-       │   │    ├model─UserSearchForm.java<br />
-       │   │    ├resource─application.properties<br />
-       │   │    └webapp┬view┬userSearch.jsp<br />
-       │   │           │    └userSearchResult.jsp<br />
-       │   │           └ApplicationContext.xml<br />
-       │   └test─contororller─UserControllerTest.java<br />
+       │   │    ├model─UserSearchForm.java
+       │   │    ├resource─application.properties
+       │   │    └webapp┬view┬userSearch.jsp
+       │   │           │    └userSearchResult.jsp
+       │   │           └ApplicationContext.xml
+       │   └test─contororller─UserControllerTest.java
        └pom.xml<br />
-       
+```    
 pom.xmlの設定<br />
 dependenciesに下記を追加<br />
 ```
