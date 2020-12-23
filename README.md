@@ -18,7 +18,7 @@ project┬src┬main┬controller─UserController.java
        │   │           │    └userSearchResult.jsp
        │   │           └ApplicationContext.xml
        │   └test─contororller─UserControllerTest.java
-       └pom.xml<br />
+       └pom.xml
 ```    
 pom.xmlの設定<br />
 dependenciesに下記を追加<br />
