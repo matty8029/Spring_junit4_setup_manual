@@ -139,11 +139,27 @@ public class UserControllerTest{
 
 	Faker faker = new Faker(new Locale("ja_JP"));
 	
-	//viewでファイル拡張子をjspで指定しているためInternalResourceViewResolverで定義しcontrollerでjspが呼び出されるようにする。
+	//viewでファイル拡張子をjspで作成しているためInternalResourceViewResolverで定義しcontrollerでjspが呼び出されるようにする。
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setSuffix(".jsp");
 		return resolver;
+	}
+	
+	@Before 
+	public void setup() {
+		mockMvc = MockMvcBuilders.standaloneSetup(userController).setViewResolvers(viewResolver()).build();
+	}
+	
+	//該当URLで適切なjspに遷移するかテスト
+	//遷移できたかどうかはhttpレスポンスステータス200になったかで確認を行う
+	@Test
+	public void testURL遷移テスト()throws Exception{
+		//検索画面への確認		
+		mockMvc.perform(get("/userSearch")).andExpect(view().name("userSearch")).andExpect(status().isOk());
+		//適切な入力だったら検索結果画面へ
+		mockMvc.perform(post("/userSearch").param("zipCode", "222-3333").param("lastName", "テスト").param("firstName", "太郎")).andExpect(view().name("userSearchResult")).andExpect(status().isOk());
+		
 	}
 }
