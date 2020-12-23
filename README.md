@@ -16,7 +16,7 @@ project┬src┬main┬controller─UserController.java
        │   │    ├resource─application.properties
        │   │    └webapp┬view┬userSearch.jsp
        │   │           │    └userSearchResult.jsp
-       │   │           └ApplicationContext.xml
+       │   │           └applicationContext.xml
        │   └test─contororller─UserControllerTest.java
        └pom.xml
 ```    
@@ -80,7 +80,7 @@ public class UserController {
 /*       ~~~省略~~~     */
 }
 ```
-次にユーザ検索のフォーム
+次にユーザ検索のフォームは下記
 UserSearchForm.java
 ```java
 public class UserSearchForm{
@@ -124,3 +124,26 @@ public class UserSearchForm{
 	}
 }
 ```
+最後にテストコードは下記
+UserControllerTest.java
+```java
+```
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(locations = { "file:src/main/webapp/applicationContext.xml"})
+public class UserControllerTest{
+	@Autowired
+	private UserController userController;
+	
+	MockMvc mockMvc;
+
+	Faker faker = new Faker(new Locale("ja_JP"));
+	
+	//viewでファイル拡張子をjspで指定しているためInternalResourceViewResolverで定義しcontrollerでjspが呼び出されるようにする。
+	@Bean
+	public ViewResolver viewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setSuffix(".jsp");
+		return resolver;
+	}
+}
