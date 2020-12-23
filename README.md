@@ -60,12 +60,12 @@ UserController.java
 ```java
 @Controller
 public class UserController {
-~~
+       //検索
        @RequestMapping(value = "/userSearch", method =              RequestMethod.GET)
        public String userSearchGet(ModelMap model) {
               model.addAttribute("userSearhForm", new UserSearchForm);
               return "userSearch";
        }
-~~
+
 }
 ```
