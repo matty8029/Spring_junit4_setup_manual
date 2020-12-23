@@ -10,5 +10,19 @@ junit4環境設定からテストコード作成までの手順をまとめる�
 ・指定のviewに返却されるか<br /><br />
 
 pom.xmlの設定<br />
-'<dependencies>'に下記を追加<br />
+dependenciesに下記を追加<br />
+```
+<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.5</version>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-test</artifactId>
+  <version>3.2.3.RELEASE</version>
+  <scope>test</scope>
+</dependency>
+```
   
