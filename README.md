@@ -127,7 +127,6 @@ public class UserSearchForm{
 最後にテストコードは下記
 UserControllerTest.java
 ```java
-```
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "file:src/main/webapp/applicationContext.xml"})
