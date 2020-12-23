@@ -160,6 +160,7 @@ public class UserControllerTest{
 		mockMvc.perform(get("/userSearch")).andExpect(view().name("userSearch")).andExpect(status().isOk());
 		//適切な入力だったら検索結果画面へ
 		mockMvc.perform(post("/userSearch").param("zipCode", "222-3333").param("lastName", "テスト").param("firstName", "太郎")).andExpect(view().name("userSearchResult")).andExpect(status().isOk());
-		
+		//誤った入力だったら検索画面へ
+		mockMvc.perform(post("/userSearch").param("zipCode", "2223333").param("lastName", "テスト").param("firstName", "太郎")).andExpect(view().name("userSearch")).andExpect(status().isOk());
 	}
 }
