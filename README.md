@@ -57,7 +57,7 @@ dependenciesに下記を追加
 </dependency>
 ```
 こちらでpom.xmlの設定は完了<br/>
-次にテストを行うコントローラーは
+次にテストを行うコントローラーは下記(今回テストは検索機能のテスト)
 UserController.java
 ```java
 @Controller
@@ -78,5 +78,49 @@ public class UserController {
               return "userSearchResult";
        }
 /*       ~~~省略~~~     */
+}
+```
+次にユーザ検索のフォーム
+UserSearchForm.java
+```java
+public class UserSearchForm{
+       //未入力とパターンのバリデーション
+       @NotEmpty(groups = group1.class)
+       @Pattern(regexp = "^\\d{3}-\\d{4}$", groups = group2.class)
+       private String zipCode;
+       
+       //未入力と長さのバリデーション
+       @NotEmpty(groups = group1.class)
+       @Size(max = 15, groups = group2.class)
+       private String firstName;
+       
+       //未入力と長さのバリデーション
+       @NotEmpty(groups = group1.class)
+       @Size(max = 15, groups = group2.class)
+       private String lastName;
+       
+       public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 }
 ```
