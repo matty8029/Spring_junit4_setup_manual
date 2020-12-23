@@ -8,7 +8,7 @@ junit4環境設定からテストコード作成までの手順をまとめる�
 今回のテストコードにて行うテスト内容<br />
 ・入力フォームのバリデーション<br />
 ・指定のviewに返却されるか<br /><br />
-プロジェクトの構造は大雑把に下記のような配置(テストに不要な要素は記載しておりません。)
+プロジェクトの構造は大雑把に下記のような配置(テストに不要な要素は記載しておりません)
 ```
 project┬src┬main┬controller─UserController.java
        │   │    ├service
@@ -62,12 +62,21 @@ UserController.java
 ```java
 @Controller
 public class UserController {
-       
-       @RequestMapping(value = "/userSearch", method =              RequestMethod.GET)
+       ~~~省略~~~   
+       @RequestMapping(value = "/userSearch", method = RequestMethod.GET)
        public String userSearchGet(ModelMap model) {
-              model.addAttribute("userSearhForm", new UserSearchForm);
+              model.addAttribute("userSearhForm", new UserSearchForm());
               return "userSearch";
        }
-
+       @RequestMapping(value = "/userSearch", method = RequestMethod.POST)
+       public String userSearchPost(ModelMap model,@ModelAttribute @Validated(GroupOrders.GroupOrder.class)UserSearchForm userSearchForm,BindingResult result) {
+              //バリデーションエラーなら検索ページへリダイレクト
+              if(result.hasError())
+                     return "userSearch";
+              ~~~入力値にあった検索を行う処理~~~
+              //検索結果のページへ
+              return "userSearchResult";
+       }
+       ~~~省略~~~
 }
 ```
