@@ -23,6 +23,7 @@ project┬src┬main┬controller─UserController.java
 pom.xmlの設定<br />
 dependenciesに下記を追加<br />
 ```
+<!-- junit4 --!>
 <dependency>
   <groupId>junit</groupId>
   <artifactId>junit</artifactId>
@@ -35,5 +36,23 @@ dependenciesに下記を追加<br />
   <version>3.2.3.RELEASE</version>
   <scope>test</scope>
 </dependency>
+
+<!--BeanValidationユニットテスト -->
+<dependency>
+  <groupId>org.glassfish</groupId>
+  <artifactId>javax.el</artifactId>
+  <version>3.0.0</version>
+</dependency>
+<dependency>
+  <groupId>javax.el</groupId>
+  <artifactId>javax.el-api</artifactId>
+  <version>2.2.5</version>
+</dependency>
+<!--入力値のランダム生成用ライブラリ -->
+<dependency>
+    <groupId>com.github.javafaker</groupId>
+    <artifactId>javafaker</artifactId>
+    <version>0.16</version>
+</dependency>
 ```
-  
+
