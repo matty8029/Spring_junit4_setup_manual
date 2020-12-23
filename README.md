@@ -56,4 +56,16 @@ dependenciesに下記を追加<br />
   <version>0.16</version>
 </dependency>
 ```
-
+UserController.java
+```java
+@Controller
+public class UserController {
+~~
+       @RequestMapping(value = "/userSearch", method =              RequestMethod.GET)
+       public String userSearchGet(ModelMap model) {
+              model.addAttribute("userSearhForm", new UserSearchForm);
+              return "userSearch";
+       }
+~~
+}
+```
