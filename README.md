@@ -55,10 +55,9 @@ dependenciesに下記を追加
   <artifactId>javafaker</artifactId>
   <version>0.16</version>
 </dependency>
-
+```
 こちらでpom.xmlの設定は完了<br/>
 次にテストを行うコントローラーは
-```
 UserController.java
 ```java
 @Controller
