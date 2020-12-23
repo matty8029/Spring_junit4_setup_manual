@@ -50,9 +50,9 @@ dependenciesに下記を追加<br />
 </dependency>
 <!--入力値のランダム生成用ライブラリ -->
 <dependency>
-    <groupId>com.github.javafaker</groupId>
-    <artifactId>javafaker</artifactId>
-    <version>0.16</version>
+  <groupId>com.github.javafaker</groupId>
+  <artifactId>javafaker</artifactId>
+  <version>0.16</version>
 </dependency>
 ```
 
