@@ -11,7 +11,7 @@ junit4環境設定からテストコード作成までの手順をまとめる�
 プロジェクトの構造は大雑把に下記のような配置<br /><br />
 ```
 project┬src┬main┬controller─UserController.java
-       │   │    ├service<br />
+       │   │    ├service
        │   │    ├model─UserSearchForm.java
        │   │    ├resource─application.properties
        │   │    └webapp┬view┬userSearch.jsp
