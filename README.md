@@ -8,7 +8,7 @@ junit4環境設定からテストコード作成までの手順をまとめる�
 今回のテストコードにて行うテスト内容<br />
 ・入力フォームのバリデーション<br />
 ・指定のviewに返却されるか<br /><br />
-プロジェクトの構造は大雑把に下記のような配置(テストに不要な要素は記載しておりません。)<br /><br />
+プロジェクトの構造は大雑把に下記のような配置(テストに不要な要素は記載しておりません。)
 ```
 project┬src┬main┬controller─UserController.java
        │   │    ├service
@@ -21,7 +21,7 @@ project┬src┬main┬controller─UserController.java
        └pom.xml
 ```    
 pom.xmlの設定<br />
-dependenciesに下記を追加<br />
+dependenciesに下記を追加
 ```
 <!-- junit4 --!>
 <dependency>
@@ -55,12 +55,15 @@ dependenciesに下記を追加<br />
   <artifactId>javafaker</artifactId>
   <version>0.16</version>
 </dependency>
+
+こちらでpom.xmlの設定は完了<br/>
+次にテストを行うコントローラーは
 ```
 UserController.java
 ```java
 @Controller
 public class UserController {
-       //検索
+       
        @RequestMapping(value = "/userSearch", method =              RequestMethod.GET)
        public String userSearchGet(ModelMap model) {
               model.addAttribute("userSearhForm", new UserSearchForm);
