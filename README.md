@@ -163,4 +163,38 @@ public class UserControllerTest{
 		mockMvc.perform(post("/userSearch").param("zipCode", "2223333").param("lastName", "テスト").param("firstName", "太郎")).andExpect(view().name("userSearch")).andExpect(status().isOk());
 	}
 }
+	//beanvalidationの入力値テスト
+	//ダミーデータ生成ライブラリにて入力値を生成する
+	@Test
+	public void testバリデーションテスト()throws Exception{
+		//modelattributeで受渡を行うform名
+		String form = "relativeUserSearchForm";		
+		//javaFalkerの初期化
+		Faker faker = new Faker(new Locale("ja_JP"));	
+		//mvcリクエスト結果を格納
+		MvcResult mvcResult;
+		Map<String, Object>modelMap
+		BindingResult bindingResult;
+		
+		//郵便番号　ハイフンなし、名 適正入力、姓　適正入力
+		//郵便番号のPatternアノテーションに引っかかる場合のテストコード
+		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", faker.address().zipCode().replace("-", "")).param("lastName", faker.name().lastName()).param("firstName", faker.name().firstName())).andExpect(model().attributeHasFieldErrors(form)).andReturn();
+		modelMap = mvcResult.getModelAndView().getModel();
+		bindingResult = (BindingResult)modelMap.get("org.springframework.validation.BindingResult." + form);
+		assertThat(bindingResult.getFieldError("zipCode").getCode(), is("Pattern"));
+		
+		//郵便番号　適正入力、名 未入力、姓　適正入力
+		//名のNotEmptyアノテーションに引っかかる場合のテストコード
+		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", facker.address().zipCode()).param("lastName", "").param("firstName", faker.name().firstName())).andExpect(model().attributeHasFieldErrors(form)).andReturn();
+		modelMap = mvcResult.getModelAndView().getModel();
+		bindingResult = (BindingResult)modelMap.get("org.springframework.validation.BindingResult." + form);
+		assertThat(bindingResult.getFieldError("lastName").getCode(), is("NotEmpty"));
+		
+		//郵便番号　適正入力、名 適正入力、姓　15文字を超える入力
+		//名のNotEmptyアノテーションに引っかかる場合のテストコード
+		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", facker.address().zipCode()).param("lastName", faker.name().lastName()).param("firstName", "15文字を超える姓になっております")).andExpect(model().attributeHasFieldErrors(form)).andReturn();
+		modelMap = mvcResult.getModelAndView().getModel();
+		bindingResult = (BindingResult)modelMap.get("org.springframework.validation.BindingResult." + form);
+		assertThat(bindingResult.getFieldError("FirstName").getCode(), is("Size"));
+	}
 ```
