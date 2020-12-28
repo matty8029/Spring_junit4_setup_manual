@@ -176,21 +176,21 @@ public class UserControllerTest{
 		Map<String, Object>modelMap;
 		BindingResult bindingResult;
 		
-		//郵便番号　ハイフンなし、名 適正入力、姓　適正入力
+		//郵便番号　ハイフンなし、姓 適正入力、名　適正入力
 		//郵便番号のPatternアノテーションに引っかかる場合のテストコード
 		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", faker.address().zipCode().replace("-", "")).param("lastName", faker.name().lastName()).param("firstName", faker.name().firstName())).andExpect(model().attributeHasFieldErrors(form)).andReturn();
 		modelMap = mvcResult.getModelAndView().getModel();
 		bindingResult = (BindingResult)modelMap.get("org.springframework.validation.BindingResult." + form);
 		assertThat(bindingResult.getFieldError("zipCode").getCode(), is("Pattern"));
 		
-		//郵便番号　適正入力、名 未入力、姓　適正入力
+		//郵便番号　適正入力、姓 未入力、名　適正入力
 		//名のNotEmptyアノテーションに引っかかる場合のテストコード
 		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", facker.address().zipCode()).param("lastName", "").param("firstName", faker.name().firstName())).andExpect(model().attributeHasFieldErrors(form)).andReturn();
 		modelMap = mvcResult.getModelAndView().getModel();
 		bindingResult = (BindingResult)modelMap.get("org.springframework.validation.BindingResult." + form);
 		assertThat(bindingResult.getFieldError("lastName").getCode(), is("NotEmpty"));
 		
-		//郵便番号　適正入力、名 適正入力、姓　15文字を超える入力
+		//郵便番号　適正入力、姓 適正入力、名　15文字を超える入力
 		//名のSizeアノテーションに引っかかる場合のテストコード
 		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", facker.address().zipCode()).param("lastName", faker.name().lastName()).param("firstName", "15文字を超える姓になっております")).andExpect(model().attributeHasFieldErrors(form)).andReturn();
 		modelMap = mvcResult.getModelAndView().getModel();
