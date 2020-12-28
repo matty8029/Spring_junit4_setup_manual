@@ -192,9 +192,9 @@ public class UserControllerTest{
 		
 		//郵便番号　適正入力、姓 適正入力、名　15文字を超える入力
 		//名のSizeアノテーションに引っかかる場合のテストコード
-		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", facker.address().zipCode()).param("lastName", faker.name().lastName()).param("firstName", "15文字を超える姓になっております")).andExpect(model().attributeHasFieldErrors(form)).andReturn();
+		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", facker.address().zipCode()).param("lastName", faker.name().lastName()).param("firstName", "15文字を超える名になっております")).andExpect(model().attributeHasFieldErrors(form)).andReturn();
 		modelMap = mvcResult.getModelAndView().getModel();
 		bindingResult = (BindingResult)modelMap.get("org.springframework.validation.BindingResult." + form);
-		assertThat(bindingResult.getFieldError("FirstName").getCode(), is("Size"));
+		assertThat(bindingResult.getFieldError("firstName").getCode(), is("Size"));
 	}
 ```
