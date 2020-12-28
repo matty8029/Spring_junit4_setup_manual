@@ -191,7 +191,7 @@ public class UserControllerTest{
 		assertThat(bindingResult.getFieldError("lastName").getCode(), is("NotEmpty"));
 		
 		//郵便番号　適正入力、名 適正入力、姓　15文字を超える入力
-		//名のNotEmptyアノテーションに引っかかる場合のテストコード
+		//名のSizeアノテーションに引っかかる場合のテストコード
 		mvcResult = mockMvc.perform(post("/userSearch").param("zipCode", facker.address().zipCode()).param("lastName", faker.name().lastName()).param("firstName", "15文字を超える姓になっております")).andExpect(model().attributeHasFieldErrors(form)).andReturn();
 		modelMap = mvcResult.getModelAndView().getModel();
 		bindingResult = (BindingResult)modelMap.get("org.springframework.validation.BindingResult." + form);
