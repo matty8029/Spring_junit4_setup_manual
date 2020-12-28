@@ -173,7 +173,7 @@ public class UserControllerTest{
 		Faker faker = new Faker(new Locale("ja_JP"));	
 		//mvcリクエスト結果を格納
 		MvcResult mvcResult;
-		Map<String, Object>modelMap
+		Map<String, Object>modelMap;
 		BindingResult bindingResult;
 		
 		//郵便番号　ハイフンなし、名 適正入力、姓　適正入力
